@@ -1,7 +1,6 @@
 # Printing the banner for the cli initially when the program is executed
 
 import datetime
-from rich.text import Text
 from rich.console import Console
 from rich.layout import Layout
 from rich.panel  import Panel
