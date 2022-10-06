@@ -41,7 +41,7 @@ class Settings:
                 return json.load(settings_file)
         return self.minimum_default_settings
         
-    def get_name(self):
+    def get_username(self):
         return self.get_settings().get('username', '')
 
     def get_tasks(self):
