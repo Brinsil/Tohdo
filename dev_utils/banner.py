@@ -6,7 +6,10 @@ from rich.layout import Layout
 from rich.panel  import Panel
 from rich.columns import Columns
 
+from settings_config import Settings
+
 console = Console()
+setting = Settings()
 
 head = '''
 ████████╗ ██████╗ ██╗  ██╗██████╗  ██████╗
@@ -61,7 +64,9 @@ def make_layout() -> Layout:
 
 def banner() -> None:
     console.print(head, justify='center', style='turquoise4')
-    console.print(date_text, justify='center')
+    
+    username = setting.get_username()
+    console.print(f'[blue]Hello [bold]{username}[/][/] :smile:', date_text, justify='center')
 
     layout = make_layout()
     layout['body1'].update(body1)
