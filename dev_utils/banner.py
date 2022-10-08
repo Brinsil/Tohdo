@@ -27,7 +27,7 @@ body1 = '''
 [bold light_sea_green]TOHDO[/] :ledger: is a terminal based interactive [i]to-do[/i] list.
 
 [bold light_sea_green]Tohdo[/] let's you [bold green4]add[/], [bold red3]delete[/], [bold purple]filter[/], [bold dark_slate_gray2]show[/] tasks and let's you 
-edit status of each tasks. It also let's you add [bold bright_magenta]tags[/].'''
+edit progress of each tasks. It also let's you add [bold bright_magenta]tags[/].'''
 
 body2 = '''
 [bold light_sea_green]TOHDO[/] stand on the shoulders of giants :angel:
