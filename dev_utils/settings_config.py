@@ -50,5 +50,4 @@ class Settings:
 
 if __name__ == '__main__':
     setting = Settings()
-    setting.write_settings({'username' : 'Brinsil Elias', 'task' : False})
-    print(setting.get_settings())
+    
