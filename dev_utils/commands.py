@@ -53,7 +53,7 @@ def delete():
     """[bright_red]Delete[/] a Task"""
     ...
 
-@app.command('clear', rich_help_panel='Command')
+@app.command('clean', rich_help_panel='Command')
 def clean():
     """Clear all tasks marked as done :wastebasket:"""
     ...
@@ -85,6 +85,3 @@ def version():
 
 if __name__ == '__main__':
     app()
-
-
-
