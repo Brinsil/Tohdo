@@ -1,6 +1,13 @@
 # All the commands for tohdo 
 
+from datetime import datetime
 import typer
+from rich.console import Console
+
+from tohdo_model import Tohdo
+from database import insert_tohdo
+
+console = Console()
 
 '''
     Commands :
@@ -26,7 +33,17 @@ app = typer.Typer(help='A terminal based to-do list', rich_markup_mode='rich')
 @app.command('add', rich_help_panel='Command')
 def add():
     """[bold green]Add[/bold green] a Task :sparkles: [light_slate_grey italic](Add task name inside quotes)[/]"""
-    ...
+
+    section = console.input('Add a section : ')
+    task_count = int(console.input('Enter number of tasks : '))
+    for i in range(task_count):
+        task = console.input(f'Enter task {i + 1} : ')
+        date_completed = console.input('Enter the due date : ')
+        status = 'To-Do'
+        id = i + 1
+        tohdo = Tohdo(id, task, section, date_completed)
+        insert_tohdo(tohdo)
+
 
 @app.command('show', rich_help_panel='Command')
 def show():
