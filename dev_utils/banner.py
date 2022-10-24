@@ -26,8 +26,8 @@ date_text = f'[bold orange3]{date_now.strftime("%d %b %Y | %I:%M %p")}[/] :hourg
 body1 = '''
 [bold light_sea_green]TOHDO[/] :ledger: is a terminal based interactive [i]to-do[/i] list.
 
-[bold light_sea_green]Tohdo[/] let's you [bold green4]add[/], [bold red3]delete[/], [bold purple]filter[/], [bold dark_slate_gray2]show[/] tasks and let's you 
-edit progress of each tasks. It also let's you add [bold bright_magenta]tags[/].'''
+[bold light_sea_green]Tohdo[/] let's you [bold green]add[/], [bright_red]delete[/], [deep_pink3]filter[/], [bold dark_slate_gray2]show[/] tasks and let's you 
+edit progress of each tasks.'''
 
 body2 = '''
 [bold light_sea_green]TOHDO[/] stand on the shoulders of giants :angel:
