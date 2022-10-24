@@ -32,7 +32,7 @@ app = typer.Typer(help='A terminal based to-do list', rich_markup_mode='rich')
 
 @app.command('add', rich_help_panel='Command')
 def add():
-    """[bold green]Add[/bold green] a Task :sparkles: [light_slate_grey italic](Add task name inside quotes)[/]"""
+    """[bold green]Add[/bold green] a Section containing multiple tasks :sparkles: [light_slate_grey italic](Add section and task name inside quotes)[/]"""
 
     section = console.input('Add a section : ')
     task_count = int(console.input('Enter number of tasks : '))
@@ -52,12 +52,17 @@ def show():
 
 @app.command('done', rich_help_panel='Command')
 def done():
-    """Mark a task as [#bbf2b3]done ✓[/]"""
+    """Mark a task as [strike][#bbf2b3]done ✓[/]"""
+    ...
+
+@app.command('doing', rich_help_panel='Command')
+def doing():
+    """Mark a task as [#87ffd7]doing[/]"""
     ...
 
 @app.command('undone', rich_help_panel='Command')
 def undone():
-    '''Mark a task as [purple4]undone ○[/]'''
+    '''Mark a task as [#875fff]undone ○[/]'''
     ...
 
 @app.command('move', rich_help_panel='Command')
@@ -72,30 +77,30 @@ def delete():
 
 @app.command('clean', rich_help_panel='Command')
 def clean():
-    """Clear all tasks marked as done :wastebasket:"""
+    """[gold1]Clear[/] all tasks marked as [strike]done[/] :wastebasket:"""
     ...
 
 @app.command('filter', rich_help_panel='Command')
 def filter():
-    '''Filter tasks having the same tags :star:'''
+    '''[deep_pink3]Filter[/] tasks having the same tags :star:'''
     ...
 
-@app.command('username', rich_help_panel='Utils and Config')
+@app.command('username', rich_help_panel='Configuration and Help')
 def username():
     """Change name :name_badge: [light_slate_grey italic](without resetting data)[/]"""
     ...
 
-@app.command('config', rich_help_panel='Utils and Config')
+@app.command('config', rich_help_panel='Configuration and Help')
 def config():
     """Open the configuration file :wrench:"""
     ...
 
-@app.command('docs', rich_help_panel='Utils and Config')
+@app.command('docs', rich_help_panel='Configuration and Help')
 def docs():
     """Launch docs Website :globe_with_meridians:"""
     ...
 
-@app.command('version', rich_help_panel='Utils and Config')
+@app.command('version', rich_help_panel='Configuration and Help')
 def version():
     """Show version :bookmark:"""
     ...
