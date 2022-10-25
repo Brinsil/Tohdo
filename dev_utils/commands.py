@@ -40,7 +40,7 @@ def add():
         task = console.input(f'Enter task {i + 1} : ')
         date_completed = console.input('Enter the due date : ')
         date_completed = datetime.strptime(date_completed, '%d/%m/%y').isoformat()
-        status = 'To-Do'
+        status = 'To-do'
         id = i + 1
         tohdo = Tohdo(id, task, section, date_completed, status)
         insert_tohdo(tohdo)
