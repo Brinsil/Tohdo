@@ -30,6 +30,16 @@ def insert_tohdo(tohdo: Tohdo):
                   {'task': tohdo.task, 'section': tohdo.section, 'date_added': tohdo.date_added,
                    'date_completed': tohdo.date_completed, 'status': tohdo.status, 'id': tohdo.id })
 
+def get_all_tohdos() -> List[Tohdo]:
+    c.execute('SELECT * FROM tohdo')
+    results = c.fetchall()
+    tohdos = []
+    for result in results:
+        tohdos.append(result)
+    return tohdos
+
+
+
 
 
 
