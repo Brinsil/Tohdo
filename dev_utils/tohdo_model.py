@@ -3,7 +3,7 @@
 from datetime import datetime
 
 class Tohdo:
-    def __init__(self, id, task, section, date_completed = None, status = 'To-do') -> None:
+    def __init__(self, id, task, section, date_added = None, date_completed = None, status = 'To-do') -> None:
         self.id = id
         self.task = task
         self.section = section
