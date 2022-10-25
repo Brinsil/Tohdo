@@ -30,13 +30,25 @@ def insert_tohdo(tohdo: Tohdo):
                   {'task': tohdo.task, 'section': tohdo.section, 'date_added': tohdo.date_added,
                    'date_completed': tohdo.date_completed, 'status': tohdo.status, 'id': tohdo.id })
 
+def get_tohdo(position: int) -> Tohdo:
+    c.execute('SELECT * FROM tohdo WHERE Id = :position', {'position' : position})
+    task = c.fetchall()[0]
+    return Tohdo(*task)
+
 def get_all_tohdos() -> List[Tohdo]:
-    c.execute('SELECT * FROM tohdo')
-    results = c.fetchall()
     tohdos = []
-    for result in results:
-        tohdos.append(result)
+    with conn:
+        c.execute('SELECT * FROM tohdo')
+        results = c.fetchall()
+        for result in results:
+            result = Tohdo(*result)
+            tohdos.append(result)
     return tohdos
+
+def update(id: int, column: str, value: str) -> None:
+    with conn:
+        c.execute(f'UPDATE tohdo SET {column} = :value WHERE Id = :id', {'column' : column, 'value' : value, 'id' : id})
+
 
 
 
