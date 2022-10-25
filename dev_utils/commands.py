@@ -75,7 +75,12 @@ def doing():
 @app.command('undone', rich_help_panel='Command')
 def undone():
     '''Mark a task as [#875fff]undone ○[/]'''
-    ...
+    id = console.input('Enter the position of the task: ')
+    task = get_tohdo(id)
+    task_id = task.id
+    task_status = task.status = 'To-do'
+    update(task_id, 'Status', task_status)
+    show()
 
 @app.command('move', rich_help_panel='Command')
 def move():
