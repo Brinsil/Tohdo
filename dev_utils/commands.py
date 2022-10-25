@@ -5,7 +5,7 @@ import typer
 from rich.console import Console
 
 from tohdo_model import Tohdo
-from database import insert_tohdo, get_all_tohdos
+from database import insert_tohdo, get_all_tohdos, get_tohdo, update
 
 console = Console()
 
@@ -55,7 +55,12 @@ def show():
 @app.command('done', rich_help_panel='Command')
 def done():
     """Mark a task as [strike][#bbf2b3]done ✓[/]"""
-    ...
+    id = console.input('Enter the position of the task: ')
+    task = get_tohdo(id)
+    task_id = task.id
+    task_status = task.status = 'Done'
+    update(task_id, 'Status', task_status)
+    show()
 
 @app.command('doing', rich_help_panel='Command')
 def doing():
