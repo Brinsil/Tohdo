@@ -42,7 +42,7 @@ def add():
         date_completed = datetime.strptime(date_completed, '%d/%m/%y').isoformat()
         status = 'To-Do'
         id = i + 1
-        tohdo = Tohdo(id, task, section, date_completed)
+        tohdo = Tohdo(id, task, section, date_completed, status)
         insert_tohdo(tohdo)
 
 
