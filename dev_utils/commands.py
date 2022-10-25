@@ -5,7 +5,7 @@ import typer
 from rich.console import Console
 
 from tohdo_model import Tohdo
-from database import insert_tohdo
+from database import insert_tohdo, get_all_tohdos
 
 console = Console()
 
@@ -48,7 +48,8 @@ def add():
 @app.command('show', rich_help_panel='Command')
 def show():
     """Show all Tasks :open_book:"""
-    ...
+    tasks = get_all_tohdos()
+    console.print(tasks)
 
 @app.command('done', rich_help_panel='Command')
 def done():
