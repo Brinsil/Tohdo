@@ -1,13 +1,16 @@
 # All the commands for tohdo 
 
-from datetime import datetime
+import os
 import typer
+from datetime import datetime
 from rich.console import Console
 
 from tohdo_model import Tohdo
 from database import insert_tohdo, get_all_tohdos, get_tohdo, update_tohdo, get_count, delete_tohdo, clear_tohdo
+from settings_config import Settings
 
 console = Console()
+settings = Settings()
 
 '''
     Commands :
@@ -119,12 +122,22 @@ def filter():
 @app.command('username', rich_help_panel='Configuration and Help')
 def username():
     """Change name :name_badge: [light_slate_grey italic](without resetting data)[/]"""
-    ...
+    username = settings.get_username()
+    prompt = console.input(f'Do you want to change the username {username} (Y/N): ')
+    if prompt == 'Y' or prompt == 'y':
+        username = console.input('Enter the username: ')
+        settings_config = settings.get_settings()
+        settings_config['username'] = username
+        settings.write_settings(settings_config)
 
 @app.command('config', rich_help_panel='Configuration and Help')
 def config():
     """Open the configuration file :wrench:"""
-    ...
+    '''
+    path = settings.get_full_settings_path()
+    os.system(f'open -a TextEdit {path}')
+    '''
+    typer.launch(settings.get_full_settings_path(), locate=True)
 
 @app.command('docs', rich_help_panel='Configuration and Help')
 def docs():
@@ -134,7 +147,8 @@ def docs():
 @app.command('version', rich_help_panel='Configuration and Help')
 def version():
     """Show version :bookmark:"""
-    ...
+    typer.echo(f'Tohdo Version: {__version__}')
+    typer.Exit()
 
 if __name__ == '__main__':
     app()
