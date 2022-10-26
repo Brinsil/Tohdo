@@ -5,7 +5,7 @@ import typer
 from rich.console import Console
 
 from tohdo_model import Tohdo
-from database import insert_tohdo, get_all_tohdos, get_tohdo, update
+from database import insert_tohdo, get_all_tohdos, get_tohdo, update_tohdo, get_count, delete_tohdo, clear_tohdo
 
 console = Console()
 
@@ -40,9 +40,10 @@ def add():
         task = console.input(f'Enter task {i + 1} : ')
         date_completed = console.input('Enter the due date : ')
         date_completed = datetime.strptime(date_completed, '%d/%m/%y').isoformat()
+        date_added = datetime.now().isoformat()
         status = 'To-do'
         id = i + 1
-        tohdo = Tohdo(id, task, section, date_completed, status)
+        tohdo = Tohdo(id, task, section, date_added, date_completed, status)
         insert_tohdo(tohdo)
 
 
@@ -59,7 +60,7 @@ def done():
     task = get_tohdo(id)
     task_id = task.id
     task_status = task.status = 'Done'
-    update(task_id, 'Status', task_status)
+    update_tohdo(task_id, 'Status', task_status)
     show()
 
 @app.command('doing', rich_help_panel='Command')
@@ -69,7 +70,7 @@ def doing():
     task = get_tohdo(id)
     task_id = task.id
     task_status = task.status = 'Doing'
-    update(task_id, 'Status', task_status)
+    update_tohdo(task_id, 'Status', task_status)
     show()
 
 @app.command('undone', rich_help_panel='Command')
@@ -79,23 +80,36 @@ def undone():
     task = get_tohdo(id)
     task_id = task.id
     task_status = task.status = 'To-do'
-    update(task_id, 'Status', task_status)
+    update_tohdo(task_id, 'Status', task_status)
     show()
 
 @app.command('move', rich_help_panel='Command')
 def move():
     """Change task order 🔀"""
-    ...
+    count = get_count()
+    id = int(console.input('Enter the position of task: '))
+    new_id = int(console.input('Enter the new position of task: '))
+    task = get_tohdo(id)
+    delete_tohdo(id)
+    task.id = new_id
+    print(task.id)
+    for i in range(id + 1, count):
+        update_tohdo(i, 'Id', i - 1)
+    insert_tohdo(task)
+
 
 @app.command('delete', rich_help_panel='Command')
 def delete():
     """[bright_red]Delete[/] a Task"""
-    ...
+    id = console.input('Enter the id: ')
+    delete_tohdo(id)
+    show()
 
 @app.command('clean', rich_help_panel='Command')
 def clean():
     """[gold1]Clear[/] all tasks marked as [strike]done[/] :wastebasket:"""
-    ...
+    clear_tohdo()
+    show()
 
 @app.command('filter', rich_help_panel='Command')
 def filter():
