@@ -49,12 +49,17 @@ def get_all_tohdos() -> List[Tohdo]:
             tohdos.append(result)
     return tohdos
 
-def update(id: int, column: str, value: str) -> None:
+def update_tohdo(id: int, column: str, value: str) -> None:
     with conn:
         c.execute(f'UPDATE tohdo SET {column} = :value WHERE Id = :id', {'column' : column, 'value' : value, 'id' : id})
 
+def delete_tohdo(id: int) -> None:
+    with conn:
+        c.execute('DELETE FROM tohdo WHERE Id = :id', {'id' : id})
 
-
+def clear_tohdo() -> None:
+    with conn:
+        c.execute('DELETE FROM tohdo')
 
 
 
