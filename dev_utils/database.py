@@ -21,9 +21,13 @@ c.execute("""
     )
 """)
 
-def insert_tohdo(tohdo: Tohdo):
+def get_count() -> int:
     c.execute('SELECT COUNT(*) FROM tohdo')
-    id = c.fetchone()[0]
+    count = c.fetchone()[0]
+    return count
+
+def insert_tohdo(tohdo: Tohdo):
+    id = get_count()
     tohdo.id = id if id else 0
     with conn:
         c.execute('INSERT INTO tohdo VALUES (:id, :task, :section, :date_added, :date_completed, :status)',
