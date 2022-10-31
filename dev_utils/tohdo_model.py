@@ -11,19 +11,19 @@ class Tohdo:
         self.date_completed = date_completed
         self.status = status
 
-    def get_id():
+    def get_id(self):
         return self.id
 
-    def get_section():
+    def get_section(self):
         return self.section
 
-    def get_date_added():
+    def get_date_added(self):
         return self.date_added
 
-    def get_date_completed():
+    def get_date_completed(self):
         return self.date_completed
 
-    def get_status():
+    def get_status(self):
         return self.status
 
     def __repr__(self) -> str:
